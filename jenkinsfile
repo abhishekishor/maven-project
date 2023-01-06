@@ -33,4 +33,14 @@ node {
         
     }
     
+    stage('Deployment') {
+        
+        sshagent(['tomcat-server']) {
+            
+            sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/scripted-pipeline/target/maven-web-application.war ubuntu@13.250.105.104:/opt/tomcat/webapps"
+    
+        }
+        
+    }
+    
 }
